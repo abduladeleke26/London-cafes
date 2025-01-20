@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>London Coffee Shops</title>
+
+</head>
+<body>
+    <center>
+        <h1>Coffee Shops In London</h1>
+
+        <form action="/custom" method="post">
+        <div style="display: flex;" >
+            <div style="margin-left: 500px;">
+                <input type="checkbox" name="toilet" id="toilet"{% if toilet == True %}checked{% endif %}>
+                <label for="toilet">TOILETS</label><br>
+            </div>
+
+            <div style="margin-left: 50px;">
+                <input type="checkbox" id="wifi" name="wifi"{% if wifi == True %}checked{% endif %}>
+                <label for="wifi">WIFI</label><br>
+            </div>
+
+            <div style="margin-left: 50px;">
+                <input type="checkbox" id="sockets" name="sockets"{% if socket == True %}checked{% endif %}>
+                <label for="sockets">SOCKETS</label><br>
+            </div>
+
+            <div style="margin-left: 50px;">
+                <input type="checkbox" id="calls" name="calls"{% if calls == True %}checked{% endif %}>
+                <label for="calls">CAN TAKE CALLS</label><br>
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+        </form>
+    </center>
+    {% for cafe in cafes %}
+    <a href="{{ url_for('shop_info', cafe_id=cafe.id) }}">
+            <h1>{{ cafe.name }}</h1>
+    </a>
+    {% endfor %}
+</body>
+</html>
