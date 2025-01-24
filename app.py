@@ -1,127 +1,106 @@
 import requests
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, jsonify, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Integer, String, Boolean, and_
 import os
-urlt = "https://api-b2b.backenster.com/b1/api/v3/translate"
-urlc = "https://api-b2b.backenster.com/b1/api/v3/getLanguages?platform=api&code=en_GB"
 
 app = Flask(__name__)
 
 
-
-headersc = {
-        "accept": "application/json",
-        "Authorization": os.environ.get('FLASK_KEY')
-    }
-
-headerst = {
-        "accept": "application/json",
-        "content-type": "application/json",
-        "Authorization": "a_FVCr2bXlBaJEvrgvNrp7wlgHlJCd8C8rvt2sZqaxd2DScw8acqifRUfDTYTB0OIdUodg2ffaXscbzso8"
-    }
+class Base(DeclarativeBase):
+    pass
 
 
-
-def translator(word,to,fromm):
-    global urlt
-    global headerst
-
-    payload = {
-        "platform": "api",
-        "to": to,
-        "from": fromm,
-        "data": word
-    }
-
-    response = requests.post(urlt, json=payload, headers=headerst)
-
-    gett = response.json()
-
-    word = gett.get("result")
-    lan = gett.get("from")
-    return word, lan
-
-def getCountryCode(text):
-    global urlc
-    global headersc
-    global languages
-    response = requests.get(urlc, headers=headersc)
-
-    universe = response.json()
-    earth = universe.get("result")
-    for country in earth:
-        language = country['englishName']
-        alphaCode = country['code_alpha_1']
-        if language.lower() == text.lower() or alphaCode.lower() == text.lower() :
-            code = country['full_code']
-            return code, language, alphaCode
-
-def detect(text):
-    url = "https://api-gl.lingvanex.com/language/translate/v2/detect"
-
-    payload = {"q": text}
-    headers = {
-        "accept": "application/json",
-        "content-type": "application/json",
-        "Authorization": os.environ.get('FLASK_KEY')
-    }
-
-    response = requests.post(url, json=payload, headers=headers)
-
-    dictt = response.json()
-    detections = dictt['data']
-    deeper = detections['detections']
-    evenDeeper = deeper[0]
-    evenEvenDeeper = evenDeeper[0]
-    language = evenEvenDeeper['language']
-    return language
+# Connect to Database
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", 'sqlite:///cafes.db')
+db = SQLAlchemy()
+db.init_app(app)
 
 
+# Cafe TABLE Configuration
+class Cafe(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
+    map_url: Mapped[str] = mapped_column(String(500), nullable=False)
+    img_url: Mapped[str] = mapped_column(String(500), nullable=False)
+    location: Mapped[str] = mapped_column(String(250), nullable=False)
+    seats: Mapped[str] = mapped_column(String(250), nullable=False)
+    has_toilet: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    has_wifi: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    has_sockets: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    coffee_price: Mapped[str] = mapped_column(String(250), nullable=True)
 
 
+with app.app_context():
+    db.create_all()
 
+def printff(f):
+    print(f)
+
+def set(f):
+    if f == None:
+        return False
+    elif f == "on":
+        return True
 
 @app.route('/')
 def home():
-    return render_template("index.html")
-
-@app.route('/translate',methods = ['POST'])
-def translate():
-    choice1 = request.form.get("choice1")
-    choice2 = request.form.get("choice2")
-    text = request.form.get("text")
-
-    if not choice2 or not text:
-        flash('Please fill in all required fields.')
-        return redirect('/')
-
-    if choice1 == "Detect Language":
-        language = detect(text)
-        countryCode1, english1, code1 = getCountryCode(language)
-        choice1 = english1
+    calls = request.form.get('calls')
+    socket = request.form.get('sockets')
+    wifi = request.form.get('wifi')
+    toilet = request.form.get('toilet')
+    if((calls == None) and (socket == None) and (wifi == None) and (toilet == None)):
+        result = db.session.execute(db.select(Cafe))
     else:
-        countryCode1, english1, code1 = getCountryCode(choice1)
+        result = db.session.execute(db.select(Cafe).where(and_(Cafe.can_take_calls == calls,Cafe.has_wifi == wifi,Cafe.has_sockets == socket,Cafe.has_toilet == toilet)))
+    all_cafes = result.scalars().all()
+    return render_template("index.html",cafes =all_cafes)
 
 
-    language = detect(text)
-    if language != code1:
-        countryCode1, english1, code1 = getCountryCode(language)
-        choice1 = english1
-    countryCode2, english2, code2 = getCountryCode(choice2)
+@app.route('/custom', methods=['POST'])
+def custom():
+    calls = set(request.form.get('calls'))
+    socket = set(request.form.get('sockets'))
+    wifi = set(request.form.get('wifi'))
+    toilet = set(request.form.get('toilet'))
+    filters = []
+    if ((calls == False) and (socket == False) and (wifi == False) and (toilet == False)):
+        result = db.session.execute(db.select(Cafe))
+        all_cafes = result.scalars().all()
+    else:
+        all_cafes = []
 
-    new, lan = translator(text,countryCode2,countryCode1)
+    if calls:
+        filters.append(Cafe.can_take_calls == calls)
+
+    if socket:
+        filters.append(Cafe.has_sockets == socket)
+
+    if wifi:
+        filters.append(Cafe.has_wifi == wifi)
+
+    if toilet:
+        filters.append(Cafe.has_toilet == toilet)
+
+    if filters:
+        query = db.select(Cafe).where(and_(*filters))
+        result = db.session.execute(query)
+        new_cafes = result.scalars().all()
+        existing_ids = {cafe.id for cafe in all_cafes}
+        all_cafes.extend(cafe for cafe in new_cafes if cafe.id not in existing_ids)
+
+
+    return render_template("index.html", cafes=all_cafes, calls=calls, socket=socket, wifi=wifi, toilet=toilet)
 
 
 
-    return render_template("index.html", text = text, translated = new, choice1 = choice1, choice2 = choice2)
 
-
-
-
-
-
-
-
-
+@app.route("/<int:cafe_id>")
+def shop_info(cafe_id):
+    cafe = db.get_or_404(Cafe, cafe_id)
+    return render_template("shop.html",shop=cafe)
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
