@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" style=" Background-color: #C4A484;">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ shop.name }}</title>
+</head>
+<body>
+<center>
+    <h1>{{ shop.name }}</h1>
+    <img src="{{ shop.img_url }}" style=" width: 500px; height: 300px;">
+</center>
+<div style="display: flex;">
+    <div>
+        <h1 style="margin-left: 150px;">Located: {{ shop.location }}</h1>
+        <h1 style="margin-left: 150px;">Coffee prices: {{shop.coffee_price }}</h1>
+        <h1 style="margin-left: 150px;">Seats: {{ shop.seats }}</h1>
+        <h1 style="margin-left: 150px;">Toilets: {% if shop.has_toilet == True %} 👍{% else %} 👎{% endif %}</h1>
+        <h1 style="margin-left: 150px;">Wifi: {% if shop.has_wifi == True %} 👍{% else %} 👎{% endif %}</h1>
+        <h1 style="margin-left: 150px;">Sockets: {% if shop.has_sockets == True %} 👍{% else %} 👎{% endif %}</h1>
+        <h1 style="margin-left: 150px;">Can take calls: {% if shop.can_take_calls == True %} 👍{% else %} 👎{% endif %}</h1>
+        <a href="{{ shop.map_url }}">
+            <h1 style="margin-left: 150px;">Google maps</h1>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
