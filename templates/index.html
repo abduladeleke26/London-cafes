@@ -1,45 +1,280 @@
 <!DOCTYPE html>
-<html lang="en" style=" Background-color: #C4A484;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>London Coffee Shops</title>
+    <title>Translator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 
 </head>
 <body>
-    <center>
-        <h1 style="color: #6E260E;">Coffee Shops In London ☕</h1>
 
-        <form action="/custom" method="post">
-        <div style="display: flex;" >
-            <div style="margin-left: 500px;">
-                <input type="checkbox" name="toilet" id="toilet"{% if toilet == True %}checked{% endif %}>
-                <label for="toilet" >TOILETS</label><br>
+    <div class="my-5">
+        <div class="p-5  bg-body-tertiary">
+            <div class="container py-0 text-center">
+                <h1 class="text-body-emphasis">Translate your text</h1>
             </div>
+            <form action="/translate" method="post">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-bottom: 15px; margin-top: 15px;">
+                        <select name="choice1" style="margin-left: 30px;">
+                            <option value="Detect Language" {% if choice1 == "Detect Language" %}selected{% endif %}>Detect Language</option>
+                            <option value="Afrikaans" {% if choice1 == "Afrikaans" %}selected{% endif %}>Afrikaans</option>
+                            <option value="Albanian" {% if choice1 == "Albanian" %}selected{% endif %}>Albanian</option>
+                            <option value="Amharic" {% if choice1 == "Amharic" %}selected{% endif %}>Amharic</option>
+                            <option value="Arabic (Egypt)" {% if choice1 == "Arabic (Egypt)" %}selected{% endif %}>Arabic (Egypt)</option>
+                            <option value="Arabic (Saudi Arabia)" {% if choice1 == "Arabic (Saudi Arabia)" %}selected{% endif %}>Arabic (Saudi Arabia)</option>
+                            <option value="Arabic (United Arab Emirates)" {% if choice1 == "Arabic (United Arab Emirates)" %}selected{% endif %}>Arabic (United Arab Emirates)</option>
+                            <option value="Armenian" {% if choice1 == "Armenian" %}selected{% endif %}>Armenian</option>
+                            <option value="Azerbaijani" {% if choice1 == "Azerbaijani" %}selected{% endif %}>Azerbaijani</option>
+                            <option value="Basque" {% if choice1 == "Basque" %}selected{% endif %}>Basque</option>
+                            <option value="Belarusian" {% if choice1 == "Belarusian" %}selected{% endif %}>Belarusian</option>
+                            <option value="Bengali" {% if choice1 == "Bengali" %}selected{% endif %}>Bengali</option>
+                            <option value="Bosnian" {% if choice1 == "Bosnian" %}selected{% endif %}>Bosnian</option>
+                            <option value="Bulgarian" {% if choice1 == "Bulgarian" %}selected{% endif %}>Bulgarian</option>
+                            <option value="Catalan" {% if choice1 == "Catalan" %}selected{% endif %}>Catalan</option>
+                            <option value="Cebuano" {% if choice1 == "Cebuano" %}selected{% endif %}>Cebuano</option>
+                            <option value="Chichewa (Nyanja)" {% if choice1 == "Chichewa (Nyanja)" %}selected{% endif %}>Chichewa (Nyanja)</option>
+                            <option value="Chinese (simplified)" {% if choice1 == "Chinese (simplified)" %}selected{% endif %}>Chinese (simplified)</option>
+                            <option value="Chinese (traditional)" {% if choice1 == "Chinese (traditional)" %}selected{% endif %}>Chinese (traditional)</option>
+                            <option value="Corsican" {% if choice1 == "Corsican" %}selected{% endif %}>Corsican</option>
+                            <option value="Creole" {% if choice1 == "Creole" %}selected{% endif %}>Creole</option>
+                            <option value="Croatian" {% if choice1 == "Croatian" %}selected{% endif %}>Croatian</option>
+                            <option value="Czech" {% if choice1 == "Czech" %}selected{% endif %}>Czech</option>
+                            <option value="Danish" {% if choice1 == "Danish" %}selected{% endif %}>Danish</option>
+                            <option value="Dutch" {% if choice1 == "Dutch" %}selected{% endif %}>Dutch</option>
+                            <option value="English (Australian)" {% if choice1 == "English (Australian)" %}selected{% endif %}>English (Australian)</option>
+                            <option value="English (Great Britain)" {% if choice1 == "English (Great Britain)" %}selected{% endif %}>English (Great Britain)</option>
+                            <option value="English (USA)" {% if choice1 == "English (USA)" %}selected{% endif %}>English (USA)</option>
+                            <option value="Esperanto" {% if choice1 == "Esperanto" %}selected{% endif %}>Esperanto</option>
+                            <option value="Estonian" {% if choice1 == "Estonian" %}selected{% endif %}>Estonian</option>
+                            <option value="Finnish" {% if choice1 == "Finnish" %}selected{% endif %}>Finnish</option>
+                            <option value="French (Canada)" {% if choice1 == "French (Canada)" %}selected{% endif %}>French (Canada)</option>
+                            <option value="French (France)" {% if choice1 == "French (France)" %}selected{% endif %}>French (France)</option>
+                            <option value="Frisian" {% if choice1 == "Frisian" %}selected{% endif %}>Frisian</option>
+                            <option value="Galician" {% if choice1 == "Galician" %}selected{% endif %}>Galician</option>
+                            <option value="Georgian" {% if choice1 == "Georgian" %}selected{% endif %}>Georgian</option>
+                            <option value="German" {% if choice1 == "German" %}selected{% endif %}>German</option>
+                            <option value="Greek" {% if choice1 == "Greek" %}selected{% endif %}>Greek</option>
+                            <option value="Gujarati" {% if choice1 == "Gujarati" %}selected{% endif %}>Gujarati</option>
+                            <option value="Hausa" {% if choice1 == "Hausa" %}selected{% endif %}>Hausa</option>
+                            <option value="Hawaiian" {% if choice1 == "Hawaiian" %}selected{% endif %}>Hawaiian</option>
+                            <option value="Hebrew" {% if choice1 == "Hebrew" %}selected{% endif %}>Hebrew</option>
+                            <option value="Hindi" {% if choice1 == "Hindi" %}selected{% endif %}>Hindi</option>
+                            <option value="Hmong" {% if choice1 == "Hmong" %}selected{% endif %}>Hmong</option>
+                            <option value="Hungarian" {% if choice1 == "Hungarian" %}selected{% endif %}>Hungarian</option>
+                            <option value="Icelandic" {% if choice1 == "Icelandic" %}selected{% endif %}>Icelandic</option>
+                            <option value="Igbo" {% if choice1 == "Igbo" %}selected{% endif %}>Igbo</option>
+                            <option value="Indonesian" {% if choice1 == "Indonesian" %}selected{% endif %}>Indonesian</option>
+                            <option value="Irish" {% if choice1 == "Irish" %}selected{% endif %}>Irish</option>
+                            <option value="Italian" {% if choice1 == "Italian" %}selected{% endif %}>Italian</option>
+                            <option value="Japanese" {% if choice1 == "Japanese" %}selected{% endif %}>Japanese</option>
+                            <option value="Javanese" {% if choice1 == "Javanese" %}selected{% endif %}>Javanese</option>
+                            <option value="Kannada" {% if choice1 == "Kannada" %}selected{% endif %}>Kannada</option>
+                            <option value="Kazakh" {% if choice1 == "Kazakh" %}selected{% endif %}>Kazakh</option>
+                            <option value="Khmer" {% if choice1 == "Khmer" %}selected{% endif %}>Khmer</option>
+                            <option value="Kinyarwanda" {% if choice1 == "Kinyarwanda" %}selected{% endif %}>Kinyarwanda</option>
+                            <option value="Korean" {% if choice1 == "Korean" %}selected{% endif %}>Korean</option>
+                            <option value="Kurdish" {% if choice1 == "Kurdish" %}selected{% endif %}>Kurdish</option>
+                            <option value="Kyrgyz" {% if choice1 == "Kyrgyz" %}selected{% endif %}>Kyrgyz</option>
+                            <option value="Lao" {% if choice1 == "Lao" %}selected{% endif %}>Lao</option>
+                            <option value="Latin" {% if choice1 == "Latin" %}selected{% endif %}>Latin</option>
+                            <option value="Latvian" {% if choice1 == "Latvian" %}selected{% endif %}>Latvian</option>
+                            <option value="Lithuanian" {% if choice1 == "Lithuanian" %}selected{% endif %}>Lithuanian</option>
+                            <option value="Luxembourgish" {% if choice1 == "Luxembourgish" %}selected{% endif %}>Luxembourgish</option>
+                            <option value="Macedonian" {% if choice1 == "Macedonian" %}selected{% endif %}>Macedonian</option>
+                            <option value="Malagasy" {% if choice1 == "Malagasy" %}selected{% endif %}>Malagasy</option>
+                            <option value="Malay" {% if choice1 == "Malay" %}selected{% endif %}>Malay</option>
+                            <option value="Malayalam" {% if choice1 == "Malayalam" %}selected{% endif %}>Malayalam</option>
+                            <option value="Maltese" {% if choice1 == "Maltese" %}selected{% endif %}>Maltese</option>
+                            <option value="Maori" {% if choice1 == "Maori" %}selected{% endif %}>Maori</option>
+                            <option value="Marathi" {% if choice1 == "Marathi" %}selected{% endif %}>Marathi</option>
+                            <option value="Mongolian" {% if choice1 == "Mongolian" %}selected{% endif %}>Mongolian</option>
+                            <option value="Myanmar (Burmese)" {% if choice1 == "Myanmar (Burmese)" %}selected{% endif %}>Myanmar (Burmese)</option>
+                            <option value="Nepali" {% if choice1 == "Nepali" %}selected{% endif %}>Nepali</option>
+                            <option value="Norwegian" {% if choice1 == "Norwegian" %}selected{% endif %}>Norwegian</option>
+                            <option value="Odia" {% if choice1 == "Odia" %}selected{% endif %}>Odia</option>
+                            <option value="Pashto" {% if choice1 == "Pashto" %}selected{% endif %}>Pashto</option>
+                            <option value="Persian" {% if choice1 == "Persian" %}selected{% endif %}>Persian</option>
+                            <option value="Polish" {% if choice1 == "Polish" %}selected{% endif %}>Polish</option>
+                            <option value="Portuguese" {% if choice1 == "Portuguese" %}selected{% endif %}>Portuguese</option>
+                            <option value="Portuguese (Brazil)" {% if choice1 == "Portuguese (Brazil)" %}selected{% endif %}>Portuguese (Brazil)</option>
+                            <option value="Punjabi" {% if choice1 == "Punjabi" %}selected{% endif %}>Punjabi</option>
+                            <option value="Romanian" {% if choice1 == "Romanian" %}selected{% endif %}>Romanian</option>
+                            <option value="Russian" {% if choice1 == "Russian" %}selected{% endif %}>Russian</option>
+                            <option value="Samoan" {% if choice1 == "Samoan" %}selected{% endif %}>Samoan</option>
+                            <option value="Scottish" {% if choice1 == "Scottish" %}selected{% endif %}>Scottish</option>
+                            <option value="Serbian Kyrilic" {% if choice1 == "Serbian Kyrilic" %}selected{% endif %}>Serbian Kyrilic</option>
+                            <option value="Sesotho" {% if choice1 == "Sesotho" %}selected{% endif %}>Sesotho</option>
+                            <option value="Shona" {% if choice1 == "Shona" %}selected{% endif %}>Shona</option>
+                            <option value="Sindhi" {% if choice1 == "Sindhi" %}selected{% endif %}>Sindhi</option>
+                            <option value="Sinhala" {% if choice1 == "Sinhala" %}selected{% endif %}>Sinhala</option>
+                            <option value="Slovak" {% if choice1 == "Slovak" %}selected{% endif %}>Slovak</option>
+                            <option value="Slovenian" {% if choice1 == "Slovenian" %}selected{% endif %}>Slovenian</option>
+                            <option value="Somali" {% if choice1 == "Somali" %}selected{% endif %}>Somali</option>
+                            <option value="Spanish" {% if choice1 == "Spanish" %}selected{% endif %}>Spanish</option>
+                            <option value="Spanish (Mexico)" {% if choice1 == "Spanish (Mexico)" %}selected{% endif %}>Spanish (Mexico)</option>
+                            <option value="Spanish (United States)" {% if choice1 == "Spanish (United States)" %}selected{% endif %}>Spanish (United States)</option>
+                            <option value="Sundanese" {% if choice1 == "Sundanese" %}selected{% endif %}>Sundanese</option>
+                            <option value="Swahili" {% if choice1 == "Swahili" %}selected{% endif %}>Swahili</option>
+                            <option value="Swedish" {% if choice1 == "Swedish" %}selected{% endif %}>Swedish</option>
+                            <option value="Tagalog" {% if choice1 == "Tagalog" %}selected{% endif %}>Tagalog</option>
+                            <option value="Tajik" {% if choice1 == "Tajik" %}selected{% endif %}>Tajik</option>
+                            <option value="Tamil" {% if choice1 == "Tamil" %}selected{% endif %}>Tamil</option>
+                            <option value="Tatar" {% if choice1 == "Tatar" %}selected{% endif %}>Tatar</option>
+                            <option value="Telugu" {% if choice1 == "Telugu" %}selected{% endif %}>Telugu</option>
+                            <option value="Thai" {% if choice1 == "Thai" %}selected{% endif %}>Thai</option>
+                            <option value="Turkish" {% if choice1 == "Turkish" %}selected{% endif %}>Turkish</option>
+                            <option value="Turkmen" {% if choice1 == "Turkmen" %}selected{% endif %}>Turkmen</option>
+                            <option value="Ukrainian" {% if choice1 == "Ukrainian" %}selected{% endif %}>Ukrainian</option>
+                            <option value="Urdu" {% if choice1 == "Urdu" %}selected{% endif %}>Urdu</option>
+                            <option value="Uyghur" {% if choice1 == "Uyghur" %}selected{% endif %}>Uyghur</option>
+                            <option value="Uzbek" {% if choice1 == "Uzbek" %}selected{% endif %}>Uzbek</option>
+                            <option value="Vietnamese" {% if choice1 == "Vietnamese" %}selected{% endif %}>Vietnamese</option>
+                            <option value="Welsh" {% if choice1 == "Welsh" %}selected{% endif %}>Welsh</option>
+                            <option value="Xhosa" {% if choice1 == "Xhosa" %}selected{% endif %}>Xhosa</option>
+                            <option value="Yiddish" {% if choice1 == "Yiddish" %}selected{% endif %}>Yiddish</option>
+                            <option value="Yoruba" {% if choice1 == "Yoruba" %}selected{% endif %}>Yoruba</option>
+                            <option value="Zulu" {% if choice1 == "Zulu" %}selected{% endif %}>Zulu</option>
 
-            <div style="margin-left: 50px;">
-                <input type="checkbox" id="wifi" name="wifi"{% if wifi == True %}checked{% endif %}>
-                <label for="wifi" >WIFI</label><br>
-            </div>
+                        </select>
+                        <select name="choice2" style="margin-left: 324px;" required>
+                            <option>Languages</option>
+                            <option value="Afrikaans" {% if choice2 == "Afrikaans" %}selected{% endif %}>Afrikaans</option>
+                            <option value="Albanian" {% if choice2 == "Albanian" %}selected{% endif %}>Albanian</option>
+                            <option value="Amharic" {% if choice2 == "Amharic" %}selected{% endif %}>Amharic</option>
+                            <option value="Arabic (Egypt)" {% if choice2 == "Arabic (Egypt)" %}selected{% endif %}>Arabic (Egypt)</option>
+                            <option value="Arabic (Saudi Arabia)" {% if choice2 == "Arabic (Saudi Arabia)" %}selected{% endif %}>Arabic (Saudi Arabia)</option>
+                            <option value="Arabic (United Arab Emirates)" {% if choice2 == "Arabic (United Arab Emirates)" %}selected{% endif %}>Arabic (United Arab Emirates)</option>
+                            <option value="Armenian" {% if choice2 == "Armenian" %}selected{% endif %}>Armenian</option>
+                            <option value="Azerbaijani" {% if choice2 == "Azerbaijani" %}selected{% endif %}>Azerbaijani</option>
+                            <option value="Basque" {% if choice2 == "Basque" %}selected{% endif %}>Basque</option>
+                            <option value="Belarusian" {% if choice2 == "Belarusian" %}selected{% endif %}>Belarusian</option>
+                            <option value="Bengali" {% if choice2 == "Bengali" %}selected{% endif %}>Bengali</option>
+                            <option value="Bosnian" {% if choice2 == "Bosnian" %}selected{% endif %}>Bosnian</option>
+                            <option value="Bulgarian" {% if choice2 == "Bulgarian" %}selected{% endif %}>Bulgarian</option>
+                            <option value="Catalan" {% if choice2 == "Catalan" %}selected{% endif %}>Catalan</option>
+                            <option value="Cebuano" {% if choice2 == "Cebuano" %}selected{% endif %}>Cebuano</option>
+                            <option value="Chichewa (Nyanja)" {% if choice2 == "Chichewa (Nyanja)" %}selected{% endif %}>Chichewa (Nyanja)</option>
+                            <option value="Chinese (simplified)" {% if choice2 == "Chinese (simplified)" %}selected{% endif %}>Chinese (simplified)</option>
+                            <option value="Chinese (traditional)" {% if choice2 == "Chinese (traditional)" %}selected{% endif %}>Chinese (traditional)</option>
+                            <option value="Corsican" {% if choice2 == "Corsican" %}selected{% endif %}>Corsican</option>
+                            <option value="Creole" {% if choice2 == "Creole" %}selected{% endif %}>Creole</option>
+                            <option value="Croatian" {% if choice2 == "Croatian" %}selected{% endif %}>Croatian</option>
+                            <option value="Czech" {% if choice2 == "Czech" %}selected{% endif %}>Czech</option>
+                            <option value="Danish" {% if choice2 == "Danish" %}selected{% endif %}>Danish</option>
+                            <option value="Dutch" {% if choice2 == "Dutch" %}selected{% endif %}>Dutch</option>
+                            <option value="English (Australian)" {% if choice2 == "English (Australian)" %}selected{% endif %}>English (Australian)</option>
+                            <option value="English (Great Britain)" {% if choice2 == "English (Great Britain)" %}selected{% endif %}>English (Great Britain)</option>
+                            <option value="English (USA)" {% if choice2 == "English (USA)" %}selected{% endif %}>English (USA)</option>
+                            <option value="Esperanto" {% if choice2 == "Esperanto" %}selected{% endif %}>Esperanto</option>
+                            <option value="Estonian" {% if choice2 == "Estonian" %}selected{% endif %}>Estonian</option>
+                            <option value="Finnish" {% if choice2 == "Finnish" %}selected{% endif %}>Finnish</option>
+                            <option value="French (Canada)" {% if choice2 == "French (Canada)" %}selected{% endif %}>French (Canada)</option>
+                            <option value="French (France)" {% if choice2 == "French (France)" %}selected{% endif %}>French (France)</option>
+                            <option value="Frisian" {% if choice2 == "Frisian" %}selected{% endif %}>Frisian</option>
+                            <option value="Galician" {% if choice2 == "Galician" %}selected{% endif %}>Galician</option>
+                            <option value="Georgian" {% if choice2 == "Georgian" %}selected{% endif %}>Georgian</option>
+                            <option value="German" {% if choice2 == "German" %}selected{% endif %}>German</option>
+                            <option value="Greek" {% if choice2 == "Greek" %}selected{% endif %}>Greek</option>
+                            <option value="Gujarati" {% if choice2 == "Gujarati" %}selected{% endif %}>Gujarati</option>
+                            <option value="Hausa" {% if choice2 == "Hausa" %}selected{% endif %}>Hausa</option>
+                            <option value="Hawaiian" {% if choice2 == "Hawaiian" %}selected{% endif %}>Hawaiian</option>
+                            <option value="Hebrew" {% if choice2 == "Hebrew" %}selected{% endif %}>Hebrew</option>
+                            <option value="Hindi" {% if choice2 == "Hindi" %}selected{% endif %}>Hindi</option>
+                            <option value="Hmong" {% if choice2 == "Hmong" %}selected{% endif %}>Hmong</option>
+                            <option value="Hungarian" {% if choice2 == "Hungarian" %}selected{% endif %}>Hungarian</option>
+                            <option value="Icelandic" {% if choice2 == "Icelandic" %}selected{% endif %}>Icelandic</option>
+                            <option value="Igbo" {% if choice2 == "Igbo" %}selected{% endif %}>Igbo</option>
+                            <option value="Indonesian" {% if choice2 == "Indonesian" %}selected{% endif %}>Indonesian</option>
+                            <option value="Irish" {% if choice2 == "Irish" %}selected{% endif %}>Irish</option>
+                            <option value="Italian" {% if choice2 == "Italian" %}selected{% endif %}>Italian</option>
+                            <option value="Japanese" {% if choice2 == "Japanese" %}selected{% endif %}>Japanese</option>
+                            <option value="Javanese" {% if choice2 == "Javanese" %}selected{% endif %}>Javanese</option>
+                            <option value="Kannada" {% if choice2 == "Kannada" %}selected{% endif %}>Kannada</option>
+                            <option value="Kazakh" {% if choice2 == "Kazakh" %}selected{% endif %}>Kazakh</option>
+                            <option value="Khmer" {% if choice2 == "Khmer" %}selected{% endif %}>Khmer</option>
+                            <option value="Kinyarwanda" {% if choice2 == "Kinyarwanda" %}selected{% endif %}>Kinyarwanda</option>
+                            <option value="Korean" {% if choice2 == "Korean" %}selected{% endif %}>Korean</option>
+                            <option value="Kurdish" {% if choice2 == "Kurdish" %}selected{% endif %}>Kurdish</option>
+                            <option value="Kyrgyz" {% if choice2 == "Kyrgyz" %}selected{% endif %}>Kyrgyz</option>
+                            <option value="Lao" {% if choice2 == "Lao" %}selected{% endif %}>Lao</option>
+                            <option value="Latin" {% if choice2 == "Latin" %}selected{% endif %}>Latin</option>
+                            <option value="Latvian" {% if choice2 == "Latvian" %}selected{% endif %}>Latvian</option>
+                            <option value="Lithuanian" {% if choice2 == "Lithuanian" %}selected{% endif %}>Lithuanian</option>
+                            <option value="Luxembourgish" {% if choice2 == "Luxembourgish" %}selected{% endif %}>Luxembourgish</option>
+                            <option value="Macedonian" {% if choice2 == "Macedonian" %}selected{% endif %}>Macedonian</option>
+                            <option value="Malagasy" {% if choice2 == "Malagasy" %}selected{% endif %}>Malagasy</option>
+                            <option value="Malay" {% if choice2 == "Malay" %}selected{% endif %}>Malay</option>
+                            <option value="Malayalam" {% if choice2 == "Malayalam" %}selected{% endif %}>Malayalam</option>
+                            <option value="Maltese" {% if choice2 == "Maltese" %}selected{% endif %}>Maltese</option>
+                            <option value="Maori" {% if choice2 == "Maori" %}selected{% endif %}>Maori</option>
+                            <option value="Marathi" {% if choice2 == "Marathi" %}selected{% endif %}>Marathi</option>
+                            <option value="Mongolian" {% if choice2 == "Mongolian" %}selected{% endif %}>Mongolian</option>
+                            <option value="Myanmar (Burmese)" {% if choice2 == "Myanmar (Burmese)" %}selected{% endif %}>Myanmar (Burmese)</option>
+                            <option value="Nepali" {% if choice2 == "Nepali" %}selected{% endif %}>Nepali</option>
+                            <option value="Norwegian" {% if choice2 == "Norwegian" %}selected{% endif %}>Norwegian</option>
+                            <option value="Odia" {% if choice2 == "Odia" %}selected{% endif %}>Odia</option>
+                            <option value="Pashto" {% if choice2 == "Pashto" %}selected{% endif %}>Pashto</option>
+                            <option value="Persian" {% if choice2 == "Persian" %}selected{% endif %}>Persian</option>
+                            <option value="Polish" {% if choice2 == "Polish" %}selected{% endif %}>Polish</option>
+                            <option value="Portuguese" {% if choice2 == "Portuguese" %}selected{% endif %}>Portuguese</option>
+                            <option value="Portuguese (Brazil)" {% if choice2 == "Portuguese (Brazil)" %}selected{% endif %}>Portuguese (Brazil)</option>
+                            <option value="Punjabi" {% if choice2 == "Punjabi" %}selected{% endif %}>Punjabi</option>
+                            <option value="Romanian" {% if choice2 == "Romanian" %}selected{% endif %}>Romanian</option>
+                            <option value="Russian" {% if choice2 == "Russian" %}selected{% endif %}>Russian</option>
+                            <option value="Samoan" {% if choice2 == "Samoan" %}selected{% endif %}>Samoan</option>
+                            <option value="Scottish" {% if choice2 == "Scottish" %}selected{% endif %}>Scottish</option>
+                            <option value="Serbian Kyrilic" {% if choice2 == "Serbian Kyrilic" %}selected{% endif %}>Serbian Kyrilic</option>
+                            <option value="Sesotho" {% if choice2 == "Sesotho" %}selected{% endif %}>Sesotho</option>
+                            <option value="Shona" {% if choice2 == "Shona" %}selected{% endif %}>Shona</option>
+                            <option value="Sindhi" {% if choice2 == "Sindhi" %}selected{% endif %}>Sindhi</option>
+                            <option value="Sinhala" {% if choice2 == "Sinhala" %}selected{% endif %}>Sinhala</option>
+                            <option value="Slovak" {% if choice2 == "Slovak" %}selected{% endif %}>Slovak</option>
+                            <option value="Slovenian" {% if choice2 == "Slovenian" %}selected{% endif %}>Slovenian</option>
+                            <option value="Somali" {% if choice2 == "Somali" %}selected{% endif %}>Somali</option>
+                            <option value="Spanish" {% if choice2 == "Spanish" %}selected{% endif %}>Spanish</option>
+                            <option value="Spanish (Mexico)" {% if choice2 == "Spanish (Mexico)" %}selected{% endif %}>Spanish (Mexico)</option>
+                            <option value="Spanish (United States)" {% if choice2 == "Spanish (United States)" %}selected{% endif %}>Spanish (United States)</option>
+                            <option value="Sundanese" {% if choice2 == "Sundanese" %}selected{% endif %}>Sundanese</option>
+                            <option value="Swahili" {% if choice2 == "Swahili" %}selected{% endif %}>Swahili</option>
+                            <option value="Swedish" {% if choice2 == "Swedish" %}selected{% endif %}>Swedish</option>
+                            <option value="Tagalog" {% if choice2 == "Tagalog" %}selected{% endif %}>Tagalog</option>
+                            <option value="Tajik" {% if choice2 == "Tajik" %}selected{% endif %}>Tajik</option>
+                            <option value="Tamil" {% if choice2 == "Tamil" %}selected{% endif %}>Tamil</option>
+                            <option value="Tatar" {% if choice2 == "Tatar" %}selected{% endif %}>Tatar</option>
+                            <option value="Telugu" {% if choice2 == "Telugu" %}selected{% endif %}>Telugu</option>
+                            <option value="Thai" {% if choice2 == "Thai" %}selected{% endif %}>Thai</option>
+                            <option value="Turkish" {% if choice2 == "Turkish" %}selected{% endif %}>Turkish</option>
+                            <option value="Turkmen" {% if choice2 == "Turkmen" %}selected{% endif %}>Turkmen</option>
+                            <option value="Ukrainian" {% if choice2 == "Ukrainian" %}selected{% endif %}>Ukrainian</option>
+                            <option value="Urdu" {% if choice2 == "Urdu" %}selected{% endif %}>Urdu</option>
+                            <option value="Uyghur" {% if choice2 == "Uyghur" %}selected{% endif %}>Uyghur</option>
+                            <option value="Uzbek" {% if choice2 == "Uzbek" %}selected{% endif %}>Uzbek</option>
+                            <option value="Vietnamese" {% if choice2 == "Vietnamese" %}selected{% endif %}>Vietnamese</option>
+                            <option value="Welsh" {% if choice2 == "Welsh" %}selected{% endif %}>Welsh</option>
+                            <option value="Xhosa" {% if choice2 == "Xhosa" %}selected{% endif %}>Xhosa</option>
+                            <option value="Yiddish" {% if choice2 == "Yiddish" %}selected{% endif %}>Yiddish</option>
+                            <option value="Yoruba" {% if choice2 == "Yoruba" %}selected{% endif %}>Yoruba</option>
+                            <option value="Zulu" {% if choice2 == "Zulu" %}selected{% endif %}>Zulu</option>
+                        </select>
+                </div>
 
-            <div style="margin-left: 50px;">
-                <input type="checkbox" id="sockets" name="sockets"{% if socket == True %}checked{% endif %}>
-                <label for="sockets" >SOCKETS</label><br>
-            </div>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="display: flex; justify-content: flex-end">
+                    <div class="input-group" style="margin-left: 230px;">
+                        <textarea class="input" rows="3" cols="45" name="text" placeholder="Enter here">{{ text }}</textarea>
+                    </div>
 
-            <div style="margin-left: 50px;">
-                <input type="checkbox" id="calls" name="calls"{% if calls == True %}checked{% endif %}>
-                <label for="calls" >CAN TAKE CALLS</label><br>
-            </div>
+                    <div class="input-group" style="margin-right: 200px;">
+                        <textarea rows="3" cols="45" name="Translate" placeholder="Translation">{{ translated }}</textarea>
+                    </div>
+                </div>
+                <p></p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Translate</button>
+                </div>
+            </form>
         </div>
-        <button type="submit">Submit</button>
-        </form>
-    </center>
-    {% for cafe in cafes %}
-    <h1>
-        <a href="{{ url_for('shop_info', cafe_id=cafe.id) }}" style="color: #6E260E;">
-               {{ cafe.name }}
-        </a>
-    </h1>
-    {% endfor %}
+    </div>
+
 </body>
 </html>
